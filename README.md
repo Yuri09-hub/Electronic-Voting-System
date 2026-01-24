@@ -1,0 +1,2 @@
+# Electronic Voting System
+Electronic voting system developed in C, based on fundamental Data Structures concepts, simulating a complete electoral process from voter registration to final result counting, using linked lists, queues, and stacks to model the behavior of a real voting center, with the application of Abstract Data Types (ADT), a strong focus on code organization, proper memory management, and solution robustness.
