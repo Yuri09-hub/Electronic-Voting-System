@@ -11,5 +11,7 @@ typedef struct node{
     struct node *next;
 }voter;
 
-
+voter* initialize_register_voter();
+voter* register_voter(char name[50], int id, bool status);
+voter* update_voter_information(char name[50]);
 #endif //VOTER_H
