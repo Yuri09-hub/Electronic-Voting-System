@@ -7,11 +7,12 @@
 typedef struct node{
     char name[50];
     int id;
-    bool status;
+    char status[20];
     struct node *next;
 }voter;
 
 voter* initialize_register_voter();
-voter* register_voter(char name[50], int id, bool status);
-voter* update_voter_information(char name[50]);
+voter* register_voter(voter* list,char name[50], int id);
+voter* update_voter_information(char name[50],int id);
+void print_voter(voter*list);
 #endif //VOTER_H

@@ -1,3 +1,31 @@
 //
 // Created by Yuri Rodrigues on 26/01/2026.
 //
+
+#include "voter.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+voter* initialize_register_voter(){
+	return NULL;
+}
+voter* register_voter(voter* list,char name[50], int id){
+		voter* node = (voter*)malloc(sizeof(voter));
+		if(node){
+
+		strcpy(node->name,name);
+		node->id = id;
+		strcpy(node->status,"not Voted");
+		node->next = list;
+		if(list == NULL)
+		list = node;
+		else{
+		node->next = list;
+}
+
+}
+}
+voter* update_voter_information(char name[50],int id);
+void print_voter(voter*list);
