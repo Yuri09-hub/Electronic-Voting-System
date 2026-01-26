@@ -13,4 +13,7 @@ typedef struct no {
 
 candidate *create_candidate(char *name, int id, int number_of_votes);
 
+void print_candidate_list(cadidate* lista);
+
+
 #endif //CANDIDATE_H
