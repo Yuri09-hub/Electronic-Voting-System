@@ -4,15 +4,26 @@
 
 #ifndef CANDIDATE_H
 #define CANDIDATE_H
-typedef struct no {
+typedef struct node{
     char name[50];
     int id;
     int number_of_votes;
     struct node *next;
+    struct node *prev;
 }candidate;
 
-candidate *create_candidate(char *name, int id, int number_of_votes);
 
+candidate* init_candidate();
+
+// register
+candidate *register_candidate(candidate* list,char *name, int id, int number_of_votes);
+
+// remove
+candidate* remove_candidate(candidate *candidate);
+
+int search_candidate(candidate *candidate, int id);
+
+// print
 void print_candidate_list(cadidate* lista);
 
 
