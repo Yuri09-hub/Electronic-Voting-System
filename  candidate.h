@@ -19,12 +19,12 @@ candidate* init_candidate();
 candidate *register_candidate(candidate* list,char *name, int id, int number_of_votes);
 
 // remove
-candidate* remove_candidate(candidate *candidate);
+candidate* remove_candidate(candidate *list);
 
-int search_candidate(candidate *candidate, int id);
+int search_candidate(candidate *list, int id);
 
 // print
-void print_candidate_list(cadidate* lista);
+void print_candidate_list(candidate* list);
 
 
 #endif //CANDIDATE_H

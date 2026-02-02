@@ -2,9 +2,10 @@
 // Created by Yuri Rodrigues on 26/01/2026.
 //
 
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "candidate.h"
+#include " candidate.h"
 
 candidate* init_candidate(){
     return NULL;
@@ -30,7 +31,9 @@ candidate *register_candidate(candidate* list,char *name, int id, int number_of_
 }
 
 // remove
-candidate* remove_candidate(candidate *candidate){
+candidate* remove_candidate(candidate *list){
+            candidate* aux = list;
+    
 
 }
 
