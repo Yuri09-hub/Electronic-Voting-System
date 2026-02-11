@@ -23,21 +23,36 @@ candidate *register_candidate(candidate* list,char *name, int id, int number_of_
             new_candidate->number_of_votes = number_of_votes;
             new_candidate->prev = NULL;
             new_candidate->next = list;
-            if(list== NULL){
-            list-> ant = new_candidate;
+            if(list == NULL){
+            list-> prev = new_candidate;
             }
             list = new_candidate;
             return list;
 }
 
 // remove
-candidate* remove_candidate(candidate *list){
+candidate* remove_candidate(candidate *list,int id){
             candidate* aux = list;
-    
+            while(aux != NULL) {
 
+                if(aux-> id == id) {
+                    if (aux->prev == NULL )
+                        aux -> prev->next = aux->next;
+                    else
+                        list = aux->next;
+                    if (aux->next == NULL)
+                        aux->next->prev = aux->prev;
+
+                    free(aux);
+                    return list;
+                }
+                aux = aux->next;
+            }
+            printf("Error: id not found\n");
+            return list;
 }
 
-int search_candidate(candidate *candidate, int id);
+int search_candidate(candidate *list, int id);
 
 // print
-void print_candidate_list(cadidate* lista);
+void print_candidate_list(cadidate* list);
