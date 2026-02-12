@@ -83,3 +83,18 @@ void print_candidate_list(candidate* list) {
         aux = aux->next;
     }
 }
+
+//free
+void free_candidate_list(candidate* list) {
+    if (list==NULL) {
+        printf("empty list\n");
+        return;
+    }
+    candidate* aux = list;
+    while (aux != NULL) {
+        list = list->next;
+        free(aux);
+        aux = list;
+    }
+    list = NULL;
+}

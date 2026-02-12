@@ -43,13 +43,30 @@ voter* update_voter_information(voter*list,char name[50],int id){
 	printf("Not found");
     return list;
 }
+int search_voter(voter* list,int id) {
+	if(list == NULL) {
+		printf("List is empty");
+		return 0;
+	}
+	voter* aux = list;
+	while (aux != NULL) {
+		if (aux->id == id) {
+			printf("found");
+			return 1;
+		}
+		aux = aux->next;
+	}
+	printf("Not found");
+	return 0;
+}
+
 void print_voter(voter*list){
 	if (lista==NULL) {
 		printf("Empty list");
 		return;
 	}
     else {
-        voter* aux = lista;
+        voter* aux = list;
         while (aux != NULL) {
             printf(" %s %d %d\n",aux->name,aux->id,aux->status);
             aux = aux->next;
@@ -58,11 +75,17 @@ void print_voter(voter*list){
 
 }
 
+//free
 void free_voter_list(voter*list) {
 	if (list==NULL) {
 		printf("Empty list");
 		return;
 	}
-	free_voter(list->next);
-	free(list);
+	voter* aux = list;
+	while (aux != NULL) {
+		list = list->next;
+		free(aux);
+		aux = list;
+	}
+	list = NULL;
 }
