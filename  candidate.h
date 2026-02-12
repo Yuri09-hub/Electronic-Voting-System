@@ -26,5 +26,7 @@ int search_candidate(candidate *list, int id);
 // print
 void print_candidate_list(candidate* list);
 
+void free_candidate_list(candidate* list);
+
 
 #endif //CANDIDATE_H

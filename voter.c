@@ -22,7 +22,7 @@ voter* register_voter(voter* list,char name[50], int id){
 		if(list == NULL)
 		list = node;
 		else{
-		node->next = list
+		node->next = list;
 		list = node;
 		}
 	}
@@ -44,16 +44,25 @@ voter* update_voter_information(voter*list,char name[50],int id){
     return list;
 }
 void print_voter(voter*list){
-	if (lista==NULL)
-        printf("Empty list");
+	if (lista==NULL) {
+		printf("Empty list");
+		return;
+	}
     else {
         voter* aux = lista;
         while (aux != NULL) {
-            printf("Name: %s\n",aux->nome);
-            printf("ID: %d\n ",aux->id);
-            printf("Status: %s\n ",aux->estado);
+            printf(" %s %d %d\n",aux->name,aux->id,aux->status);
             aux = aux->next;
         }
     }
 
+}
+
+void free_voter_list(voter*list) {
+	if (list==NULL) {
+		printf("Empty list");
+		return;
+	}
+	free_voter(list->next);
+	free(list);
 }

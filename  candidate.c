@@ -44,6 +44,7 @@ candidate* remove_candidate(candidate *list,int id){
                         aux->next->prev = aux->prev;
 
                     free(aux);
+                    printf("deleted candidate\n");
                     return list;
                 }
                 aux = aux->next;
@@ -52,7 +53,33 @@ candidate* remove_candidate(candidate *list,int id){
             return list;
 }
 
-int search_candidate(candidate *list, int id);
+// search id
+int search_candidate(candidate *list, int id) {
+    if(list == NULL) {
+        printf("empty list\n");
+        return 0;
+    }
+    candidate* aux = list;
+    while(aux != NULL) {
+        if(aux->id == id) {
+            printf("found id\n");
+            return 1;
+        }
+        aux = aux->next;
+    }
+    printf("id not found\n");
+    return 0;
+}
 
 // print
-void print_candidate_list(cadidate* list);
+void print_candidate_list(candidate* list) {
+    if (list==NULL) {
+        printf("empty list\n");
+        return;
+    }
+    candidate* aux = list;
+    while(aux != NULL) {
+        printf("%s %d %d\n", aux->name,aux->id,aux->number_of_votes);
+        aux = aux->next;
+    }
+}
