@@ -25,6 +25,7 @@ voter* register_voter(voter* list,char name[50], int id){
 		node->next = list;
 		list = node;
 		}
+		printf("successfully registered");
 	}
 	else
 		printf("Allocation error");
@@ -34,7 +35,7 @@ voter* update_voter_information(voter*list,char name[50],int id){
 	voter* aux = list;
         while (aux != NULL ) {
             if (aux->id == id) {
-				printf("found");
+				printf("edited");
                 strcpy(aux->name,name);
                 return list;
             }
