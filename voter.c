@@ -17,7 +17,7 @@ voter* register_voter(voter* list,char name[50], int id){
 
 		strcpy(node->name,name);
 		node->id = id;
-		strcpy(node->status,"not Voted");
+		node->status =0;
 		node->next = list;
 		if(list == NULL)
 		list = node;
@@ -35,7 +35,7 @@ voter* update_voter_information(voter*list,char name[50],int id){
         while (aux != NULL ) {
             if (aux->id == id) {
 				printf("found");
-                strcpy(aux->nome,nome);
+                strcpy(aux->name,name);
                 return list;
             }
             aux = aux->next;
@@ -61,7 +61,7 @@ int search_voter(voter* list,int id) {
 }
 
 void print_voter(voter*list){
-	if (lista==NULL) {
+	if (list==NULL) {
 		printf("Empty list");
 		return;
 	}
