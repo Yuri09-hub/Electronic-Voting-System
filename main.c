@@ -6,7 +6,7 @@
 #include "voter.c"
 #include " candidate.c"
 #include "vote.c"
-#include "queue_vote.c"
+
 
     void display_menu(){
         printf("\n");

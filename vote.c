@@ -54,7 +54,7 @@ int count(vote* box) {
 }
 
 // date verify
-vote* date_verification(int day,int month,int year) {
+int date_verification(int day,int month,int year) {
     if (year < 1 || month < 1 || month > 12) return 0;
     if (day < 1 || day > 31) return 0;
 
@@ -74,9 +74,11 @@ vote* date_verification(int day,int month,int year) {
 }
 
 // time verify
-vote* time_verification(int hour,int minute) {
-    if ((8 > hour > 21 ) && (0 >minute > 59))
-        return 0;
-    else
+int time_verification(int hour, int minute) {
+
+    if (hour > 8 && hour < 21 && minute >= 0 && minute <= 59) {
         return 1;
+    } else {
+        return 0;
+    }
 }

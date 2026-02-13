@@ -16,9 +16,9 @@ typedef struct {
 }vote;
 
 vote*creat_voter_box();
-vote*add_voter_box(int id,int hour,int minute,int day,int month,int year);
+vote*add_voter_box(vote*box,int id,int hour,int minute,int day,int month,int year);
 int count(vote* box);
-vote* date_verification(int day,int month,int year);
-vote* time_verification(int hour,int minute);
+int date_verification(int day,int month,int year);
+int time_verification(int hour,int minute);
 
 #endif //VOTE_H

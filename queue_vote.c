@@ -33,7 +33,7 @@ queue_vote* add(queue_vote* queue,voter* node) {
     return queue;
 }
 
-queue_vote* remove(queue_vote* queue) {
+queue_vote* remove_element(queue_vote* queue) {
     if (queue == NULL || queue->head == NULL) {
         printf(" empty or uninitialized queue \n");
         return queue;
