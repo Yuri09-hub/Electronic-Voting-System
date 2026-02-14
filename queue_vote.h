@@ -20,5 +20,6 @@ int search_in_queue(queue_vote* queue1,queue_vote*queue2,queue_vote*queue3,int i
 void print_queue(queue_vote* queue);
 void distribute_queue(voter* list, queue_vote** queue1, queue_vote**queue2,queue_vote** queue3);
 void free_queue(queue_vote* queue);
+void print_current(queue_vote*queue);
 
 #endif //QUEUE_VOTE_H

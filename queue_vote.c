@@ -178,3 +178,11 @@ void free_queue(queue_vote* queue) {
     queue->head = NULL;
     queue->end = NULL;
 }
+
+void print_current(queue_vote*queue) {
+    if (queue == NULL || queue->head == NULL) {
+        printf("empty queue \n");
+    }
+    voter* aux = queue->head;
+    printf("Mr(Mrs) %s is voting Now...\n", aux->name);
+}

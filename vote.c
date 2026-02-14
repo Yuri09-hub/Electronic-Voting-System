@@ -34,7 +34,7 @@ vote*add_voter_box(vote* box,int id,int hour,int minute,int day,int month,int ye
         new-> next = box -> head;
         box -> head = new;
     }else
-        printf("malloc error in add_voter_box");
+        printf("Vote successfully cast.");
     return box;
 }
 
