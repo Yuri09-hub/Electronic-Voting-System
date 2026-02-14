@@ -82,3 +82,43 @@ int time_verification(int hour, int minute) {
         return 0;
     }
 }
+
+int blank_vote(int id) {
+    if (id == 0) {
+        return 1;
+    }else
+        return 0;
+}
+
+int null_vote(vote* box,candidate*list,int id) {
+    if (box == NULL || box -> head == NULL) {
+        return 0;
+    }
+    node* aux = box->head;
+    candidate* aux2= list;
+
+    while (aux) {
+        if (aux -> id == aux2->id) {
+            return 0;
+        }
+        aux2 = aux2 -> next;
+        aux = aux->next;
+    }
+    return 1;
+}
+
+int valid_vote(vote* box, candidate*list,int id) {
+    if (box == NULL || box -> head == NULL) {
+        return  0;
+    }
+    node* aux = box -> head;
+    candidate* aux2= list;
+    while (aux) {
+        if (aux->id == aux2->id) {
+            return 1;
+        }
+        aux2 = aux2->next;
+        aux = aux->next;
+    }
+    return 0;
+}
