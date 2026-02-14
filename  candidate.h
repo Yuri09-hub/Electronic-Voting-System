@@ -24,6 +24,8 @@ candidate* remove_candidate(candidate *list,int id);
 
 candidate* counter_candidate_vote(candidate *list,int id);
 
+candidate* winner(candidate*list);
+
 int search_candidate(candidate *list, int id);
 int len_candidate(candidate *list);
 
