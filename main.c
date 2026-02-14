@@ -121,6 +121,7 @@ vote* box3=creat_voter_box();
 
                 case 5:
                     int len = length_voter(list_voter);
+                    int len =
                     if (len >= 10 && status == 0) {
                         status =1;
                         distribute_queue(list_voter,&queue1,&queue2,&queue3);
@@ -295,8 +296,21 @@ vote* box3=creat_voter_box();
                     }
                     break;
                 case 9:
+                    if (status == 0)
+                        printf("Voting must be initialized to use this option.");
+                    else {
+                        int l1= len_of_queue(queue1),l2=len_of_queue(queue2),l3=len_of_queue(queue3);
+                        printf("len of queue1:");
+                        printf("%d",l1);
+                        printf("len of queue2:");
+                        printf("%d",l2);
+                        printf("len of queue1:");
+                        printf("%d",l3);
+                    }
                     break;
                 case 10:
+                    break;
+                case 11:
                     break;
                 case 0:
                     printf("\nExiting system... Goodbye!\n");

@@ -12,7 +12,7 @@ candidate* init_candidate(){
 }
 
 // register
-candidate *register_candidate(candidate* list,char *name, int id, int number_of_votes){
+candidate *register_candidate(candidate* list,char name[50], int id, int number_of_votes){
            candidate* new_candidate = (candidate*)malloc(sizeof(candidate));
             if(new_candidate== NULL){
             printf("Error in memory allocation\n");
@@ -70,6 +70,18 @@ int search_candidate(candidate *list, int id) {
     }
     printf("id not found\n");
     return 0;
+}
+int len_candidate(candidate *list) {
+    if(list == NULL) {
+        return 0;
+    }
+    candidate* aux = list;
+    int count =0;
+    while(aux != NULL) {
+        count++;
+        aux = aux->next;
+    }
+    return count;
 }
 
 // print
