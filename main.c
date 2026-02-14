@@ -32,7 +32,7 @@
 
 int main(){
 char name[50];
-int id=1,status =0,option, id_candidate= 3000,number_of_votes=0;
+int id=1,status =0,option, id_candidate= 300,number_of_votes=0;
 int day,month,year,verification;
 int valid=0,blank=0,null=0,total_vote=0;
 
@@ -51,9 +51,10 @@ vote* box3=creat_voter_box();
 
         printf("Before starting the voting system, you must register the day, month, and year\n");
         printf("if the day or month is below 10, enter only one digit.\n");
+        printf("ther year must be over 1999\n");
         printf("Enter the day of vote: ");
         scanf("%d",&day);
-        printf("Enter the month of vote");
+        printf("Enter the month of vote: ");
         scanf("%d",&month);
         printf("Enter the year of vote: ");
         scanf("%d",&year);
@@ -64,7 +65,7 @@ vote* box3=creat_voter_box();
             printf("Please enter a valid date: ");
             printf("Enter the day of vote: ");
             scanf("%d",&day);
-            printf("Enter the month of vote");
+            printf("Enter the month of vote:");
             scanf("%d",&month);
             printf("Enter the year of vote: ");
             scanf("%d",&year);
@@ -76,47 +77,63 @@ vote* box3=creat_voter_box();
             display_menu();
             scanf("%d", &option);
             getchar();
-
-
+            system("cls");
             switch (option) {
                 case 1:
+                    if (status == 0) {
+                        printf("Digit your name");
+                        scanf(" %[^\n]", name);
 
-                    printf("Digit your name");
-                    scanf(" %[^\n]", name);
+                        id = id + 1;
+                        list_voter = register_voter(list_voter, name,id);
+                        printf("\n");
+                        print_voter(list_voter);
+                        printf("\n");
+                        break;
+                    }else if(status == 1) {
+                        printf("The vote has already been initiated.");
+                    }
 
-                    id = id + 1;
-                    list_voter = register_voter(list_voter, name,id);
-                    print_voter(list_voter);
-                    break;
 
                 case 2:
                     int i,j;
-                      printf("Enter the ID you want to update.");
-                      scanf("%d", &j);
+                    if (status == 0) {
 
-                    i = search_voter(list_voter,j);
-                    if (i == 1) {
-                        printf("Enter your name");
-                        scanf(" %[^\n]", name);
+                        printf("Enter the ID you want to update.");
+                        scanf("%d", &j);
 
-                        list_voter = update_voter_information(list_voter,name,j);
+                        i = search_voter(list_voter,j);
+                        if (i == 1) {
+                            printf("Enter your name");
+                            scanf(" %[^\n]", name);
 
-                    }else if (i == 0)
-                        printf("No voter found");
+                            list_voter = update_voter_information(list_voter,name,j);
+
+                        }else if (i == 0)
+                            printf("No voter found");
+                    }else
+                        printf("The vote has already been initiated.");
+
                     break;
 
                 case 3:
-                    printf("Enter your name: ");
-                    scanf(" %[^\n]", name);
-                    id_candidate++;
-                    list_candidate = register_candidate(list_candidate,name,id_candidate,number_of_votes);
+                    if (status == 0) {
+                        printf("Enter your name: ");
+                        scanf(" %[^\n]", name);
+                        id_candidate++;
+                        list_candidate = register_candidate(list_candidate,name,id_candidate,number_of_votes);
+                        print_candidate_list(list_candidate);
+                    }else
+                        printf("The vote has already been initiated.");
                     break;
 
                 case 4:
-
-                    printf("\n Enter the ID of the candidate you wish to remove:" );
-                    scanf("%d", &i);
-                    list_candidate = remove_candidate(list_candidate,i);
+                    if (status == 0) {
+                        printf("\n Enter the ID of the candidate you wish to remove:" );
+                        scanf("%d", &i);
+                        list_candidate = remove_candidate(list_candidate,i);
+                    }else
+                        printf("The vote has already been initiated.");
                     break;
 
                 case 5:
@@ -200,6 +217,7 @@ vote* box3=creat_voter_box();
                                     scanf("%d",&vote);
                                     box1 = add_voter_box(box1,vote,hour,minutes,day,month,year);
                                     list_candidate =counter_candidate_vote(list_candidate,vote);
+                                    queue1 = remove_element(queue1);
 
                                     blank=+ blank_vote(vote);
                                     null =+ null_vote(box1,list_candidate,vote);
@@ -225,7 +243,6 @@ vote* box3=creat_voter_box();
                                 printf("Enter the minute:");
                                 scanf("%d",&minutes);
 
-                                system("clear");
 
                                 verify1 = time_verification(hour,minutes);
                                 if (verify1 == 1) {
@@ -239,6 +256,7 @@ vote* box3=creat_voter_box();
                                     scanf("%d",&vote);
                                     box2 = add_voter_box(box2,vote,hour,minutes,day,month,year);
                                     list_candidate =counter_candidate_vote(list_candidate,vote);
+                                    queue2 = remove_element(queue2);
 
                                     blank =+ blank_vote(vote);
                                     null =+ null_vote(box2,list_candidate,vote);
@@ -262,7 +280,7 @@ vote* box3=creat_voter_box();
                                 printf("Enter the minute:");
                                 scanf("%d",&minutes);
 
-                                system("clear");
+
 
                                 verify1 = time_verification(hour,minutes);
                                 if (verify1 == 1) {
@@ -276,6 +294,7 @@ vote* box3=creat_voter_box();
                                     scanf("%d",&vote);
                                     box3 = add_voter_box(box3,vote,hour,minutes,day,month,year);
                                     list_candidate =counter_candidate_vote(list_candidate,vote);
+                                    queue3 = remove_element(queue3);
 
                                     blank =+ blank_vote(vote);
                                     null =+ null_vote(box2,list_candidate,vote);
@@ -339,8 +358,8 @@ vote* box3=creat_voter_box();
                             fprintf(f,"%s %d %d\n", aux->name,aux->id,aux->number_of_votes);
                             aux = aux->next;
                         }
-
-
+                        aux = winner(list_candidate);
+                        fprintf(f,"the winner is %s %d %d\n",aux->name,aux->id,aux->number_of_votes);
                     }
                     break;
                 case 0:

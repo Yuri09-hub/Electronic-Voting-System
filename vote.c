@@ -55,22 +55,26 @@ int count(vote* box) {
 
 // date verify
 int date_verification(int day,int month,int year) {
-    if (year < 1 || month < 1 || month > 12) return 0;
-    if (day < 1 || day > 31) return 0;
+    if (year > 1999) {
+        if (year < 1 || month < 1 || month > 12) return 0;
+        if (day < 1 || day > 31) return 0;
 
-    if (month == 4 || month == 6 || month == 9 || month == 11) {
-        if (day > 30) return 0;
-    }
-
-    if (month == 2) {
-        int leap_year = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-        if (leap_year) {
-            if (day > 29) return 0;
-        } else {
-            if (day > 28) return 0;
+        if (month == 4 || month == 6 || month == 9 || month == 11) {
+            if (day > 30) return 0;
         }
-    }
-    return 1;
+
+        if (month == 2) {
+            int leap_year = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+            if (leap_year) {
+                if (day > 29) return 0;
+            } else {
+                if (day > 28) return 0;
+            }
+        }
+        return 1;
+    }else
+        return 0;
+
 }
 
 // time verify
