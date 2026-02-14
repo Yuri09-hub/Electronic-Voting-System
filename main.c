@@ -35,6 +35,7 @@ int id=1,status =0,option, id_candidate= 3000,number_of_votes=0;
 
 voter* list_voter = initialize_register_voter();
 candidate* list_candidate = init_candidate();
+
 //
 queue_vote* queue1 = initialize_queue_vote();
 queue_vote* queue2 = initialize_queue_vote();
