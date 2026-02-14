@@ -121,7 +121,7 @@ vote* box3=creat_voter_box();
 
                 case 5:
                     int len = length_voter(list_voter);
-                    int len2 = list_candidate(list_candidate);
+                    int len2 = len_candidate(list_candidate);
                     if (len >= 10 && status == 0 && len2 > 1 ) {
                         status =1;
                         distribute_queue(list_voter,&queue1,&queue2,&queue3);
@@ -326,8 +326,21 @@ vote* box3=creat_voter_box();
                     if (status==0)
                         printf("Voting must be initialized to use this option.");
                     else {
+                        total_vote = total_vote + count(box1)+ count(box2)+ count(box3);
                         FILE *f =fopen("Report.txt","w");
-                        
+                        fprintf(f,"----------------------------------------------final Report-----------------------------------\n");
+                        fprintf(f,"Number of votes: %d\n",total_vote);
+                        fprintf(f,"Blank votes: %d\n",blank);
+                        fprintf(f,"Null votes: %d\n",null);
+                        fprintf(f,"Valid votes: %d\n",valid);
+                        candidate* aux = list_candidate;
+                        fprintf(f,"Number of votes for candidates: \n");
+                        while (aux!=NULL) {
+                            fprintf(f,"%s %d %d\n", aux->name,aux->id,aux->number_of_votes);
+                            aux = aux->next;
+                        }
+
+
                     }
                     break;
                 case 0:

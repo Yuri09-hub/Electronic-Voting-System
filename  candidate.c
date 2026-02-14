@@ -68,6 +68,20 @@ candidate* counter_candidate_vote(candidate *list,int id) {
     }
     return list;
 }
+candidate* winner(candidate*list) {
+    if (list == NULL) {
+        printf("empty list");
+        return NULL;
+    }
+    candidate* aux = list;
+    candidate* aux2 = aux;
+    while(aux != NULL) {
+        if (aux2->number_of_votes < aux->number_of_votes)
+            aux2 = aux;
+        aux = aux->next;
+    }
+    return aux2;
+}
 
 // search id
 int search_candidate(candidate *list, int id) {
