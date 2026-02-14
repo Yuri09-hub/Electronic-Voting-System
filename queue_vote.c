@@ -49,7 +49,7 @@ queue_vote* remove_element(queue_vote* queue) {
 
 queue_vote* leave_queue(queue_vote*queue, int id) {
     if (queue == NULL || queue->head == NULL) {
-        printf("Fila vazia\n");
+        printf("empty queue\n");
         return queue;
     }
 
@@ -79,6 +79,7 @@ queue_vote* leave_queue(queue_vote*queue, int id) {
     }
     aux->next = NULL;
     free(aux);
+    print_queue("gave up in queue");
     return queue;
 
 }
@@ -97,18 +98,30 @@ int len_of_queue(queue_vote* queue) {
     return count;
 }
 
-int search_in_queue(queue_vote* queue,int id) {
-    if (queue == NULL || queue->head == NULL) {
-        printf("empty or uninitialized queue \n");
-        return 0;
-    }
-    voter* aux = queue->head;
+int search_in_queue(queue_vote* queue1,queue_vote*queue2,queue_vote*queue3,int id) {
+
+    voter* aux = queue1->head;
     while (aux != NULL) {
         if (aux->id == id) {
             return 1;
         }
         aux = aux->next;
     }
+
+    aux = queue2->head;
+    while (aux) {
+        if (aux->id == id) {
+            return 2;
+        }
+    }
+
+    aux = queue3-> head;
+    while (aux) {
+        if (aux->id == id) {
+            return 3;
+        }
+    }
+
     return 0;
 }
 
@@ -124,7 +137,7 @@ void print_queue(queue_vote* queue) {
     }
 }
 
-void distribute_queue(voter* list, queue_vote** queue1, queue_vote**queue2,queue_vote** queue3) {
+void distribute_queue(voter* list, queue_vote**queue1, queue_vote**queue2,queue_vote** queue3) {
     *queue1 = initialize_queue_vote();
     *queue2 = initialize_queue_vote();
     *queue3 = initialize_queue_vote();
@@ -134,7 +147,8 @@ void distribute_queue(voter* list, queue_vote** queue1, queue_vote**queue2,queue
 
     while (aux != NULL) {
         aux2 = aux->next;
-        aux = NULL;
+        aux->next = NULL;
+
         if (pass == 1) {
             *queue1 = add(*queue1,aux);
             pass = 2;

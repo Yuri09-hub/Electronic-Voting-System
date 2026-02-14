@@ -2,7 +2,7 @@
 // Created by Yuri Rodrigues on 26/01/2026.
 //
 #include <stdio.h>
-#include <locale.h>
+#include <stdlib.h>
 #include "voter.c"
 #include " candidate.c"
 #include "vote.c"
@@ -53,6 +53,7 @@ vote* box3=creat_voter_box();
             scanf("%d", &option);
             getchar();
 
+
             switch (option) {
                 case 1:
 
@@ -61,6 +62,7 @@ vote* box3=creat_voter_box();
 
                     id = id + 1;
                     list_voter = register_voter(list_voter, name,id);
+                    print_voter(list_voter);
                     break;
 
                 case 2:
@@ -94,11 +96,66 @@ vote* box3=creat_voter_box();
                     break;
 
                 case 5:
-                    printf("\n[WARNING] Clearing all memory...\n");
-
-                    printf("Queue is now empty.\n");
+                    int len = length_voter(list_voter);
+                    if (len >= 10 && status == 0) {
+                        status =1;
+                        distribute_queue(list_voter,&queue1,&queue2,&queue3);
+                        printf("The voters were distributed and organized by:\n");
+                        printf("first queue:\n");
+                        print_queue(queue1);
+                        printf("second queue:\n");
+                        print_queue(queue2);
+                        printf("third queue:\n");
+                        print_queue(queue3);
+                    }else if (status == 1)
+                        printf("The vote has already been initiated.");
+                    else
+                        printf("A minimum of 10 voters is required to begin the voting process..\n");
                     break;
 
+                case 6:
+                    if (status == 0)
+                        printf("Voting must be initialized to use this option.");
+                    else {
+                        printf("enter the id:");
+                        scanf("%d", &i);
+                        int p = search_in_queue(queue1,queue2,queue3,i);
+
+                        if (p == 1) {
+                            printf("the id %d",i);
+                            queue1 = leave_queue(queue1,i);
+
+                        }else if (p == 2) {
+                            printf("the id %d",i);
+                            queue2 = leave_queue(queue2,i);
+                        }else if (p == 3) {
+                            printf("the id %d",i);
+                            queue3 = leave_queue(queue3,i);
+                        }else
+                            printf("not found");
+                    }
+
+                    break;
+                case 7:
+                    if (status == 0)
+                        printf("Voting must be initialized to use this option.");
+                    else {
+                        printf("enter the number of queue to vote:[1,2,3]");
+                        scanf("%d", &i);
+
+                        if (i ==1) {
+
+                        }else if (i==2) {
+
+                        }else if (i==3) {
+                            
+                        }else
+                            printf("Invalid option!");
+
+                    }
+                    break;
+                case 8:
+                    break;
                 case 0:
                     printf("\nExiting system... Goodbye!\n");
 
@@ -108,10 +165,6 @@ vote* box3=creat_voter_box();
                     printf("\n[ERROR] Invalid option! Try again.\n");
             }
 
-            if (option != 0) {
-                printf("\nPress ENTER to continue...");
-                getchar(); // Pausa para o utilizador ler o resultado
-            }
 
         } while (option != 0);
 

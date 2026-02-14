@@ -23,7 +23,7 @@ candidate *register_candidate(candidate* list,char *name, int id, int number_of_
             new_candidate->number_of_votes = number_of_votes;
             new_candidate->prev = NULL;
             new_candidate->next = list;
-            if(list == NULL){
+            if(list != NULL){
             list-> prev = new_candidate;
             }
             list = new_candidate;

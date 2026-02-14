@@ -15,6 +15,7 @@ voter* initialize_register_voter();
 voter* register_voter(voter* list,char name[50], int id);
 voter* update_voter_information(voter*list,char name[50],int id);
 int search_voter(voter* list,int id);
+int length_voter(voter* list);
 void print_voter(voter*list);
 void free_voter(voter*list);
 #endif //VOTER_H

@@ -61,6 +61,18 @@ int search_voter(voter* list,int id) {
 	return 0;
 }
 
+int length_voter(voter* list) {
+	if (list == NULL)
+		return 0;
+	voter* aux = list;
+	int count = 0;
+	while (aux != NULL) {
+		count++;
+		aux = aux->next;
+	}
+	return count;
+}
+
 void print_voter(voter*list){
 	if (list==NULL) {
 		printf("Empty list");

@@ -16,7 +16,7 @@ queue_vote* add(queue_vote* queue,voter* node);
 queue_vote* remove_element(queue_vote* queue);
 queue_vote* leave_queue(queue_vote*queue, int id);
 int len_of_queue(queue_vote* queue);
-int search_in_queue(queue_vote* queue,int id);
+int search_in_queue(queue_vote* queue1,queue_vote*queue2,queue_vote*queue3,int id);
 void print_queue(queue_vote* queue);
 void distribute_queue(voter* list, queue_vote** queue1, queue_vote**queue2,queue_vote** queue3);
 void free_queue(queue_vote* queue);
