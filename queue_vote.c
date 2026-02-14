@@ -3,6 +3,7 @@
 //
 
 #include "queue_vote.h"
+#include "vote.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -35,54 +36,58 @@ queue_vote* add(queue_vote* queue,voter* node) {
 
 queue_vote* remove_element(queue_vote* queue) {
     if (queue == NULL || queue->head == NULL) {
-        printf(" empty or uninitialized queue \n");
         return queue;
     }
+
     voter* aux = queue->head;
     queue->head = aux->next;
-    if (queue->head == NULL) {
+
+    if (queue->head == NULL)
         queue->end = NULL;
-    }
+
     aux->next = NULL;
+    free(aux);
+
     return queue;
 }
 
-queue_vote* leave_queue(queue_vote*queue, int id) {
+queue_vote* leave_queue(queue_vote* queue, int id) {
     if (queue == NULL || queue->head == NULL) {
         printf("empty queue\n");
         return queue;
     }
 
     voter* aux = queue->head;
-    voter* aux2 = NULL;
+    voter* prev = NULL;
 
     while (aux != NULL && aux->id != id) {
-        aux2 = aux;
-        aux2 = aux->next;
+        prev = aux;
+        aux = aux->next;
     }
-    if (aux==NULL) {
-        printf("not found");
+
+    if (aux == NULL) {
+        printf("voter not found\n");
         return queue;
     }
 
-    // Remove the fist
-    if (aux2 == NULL) {
+    // Remove first
+    if (prev == NULL) {
         queue->head = aux->next;
         if (queue->head == NULL)
             queue->end = NULL;
     }
-    //Remove in the middle or at the end.
+    // Remove middle or end
     else {
-        aux2->next = aux->next;
+        prev->next = aux->next;
         if (aux == queue->end)
-            queue->end = aux2;
+            queue->end = prev;
     }
+
     aux->next = NULL;
     free(aux);
-    print_queue("gave up in queue");
     return queue;
-
 }
+
 
 int len_of_queue(queue_vote* queue) {
     if (queue == NULL || queue->head == NULL) {

@@ -6,6 +6,7 @@
 #define QUEUE_VOTE_H
 #include "voter.h"
 
+
 typedef struct {
     voter* head;
     voter* end;

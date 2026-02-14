@@ -28,7 +28,7 @@ candidate *register_candidate(candidate* list,char name[50], int id, int number_
             list-> prev = new_candidate;
             }
             list = new_candidate;
-            printf("successfully registered");
+            printf("successfully registered\n");
             return list;
 }
 

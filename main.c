@@ -76,14 +76,13 @@ vote* box3=creat_voter_box();
 
             display_menu();
             scanf("%d", &option);
-            getchar();
-            system("cls");
+
             switch (option) {
                 case 1:
                     if (status == 0) {
                         printf("Digit your name");
                         scanf(" %[^\n]", name);
-
+                        getchar();
                         id = id + 1;
                         list_voter = register_voter(list_voter, name,id);
                         printf("\n");
@@ -124,7 +123,7 @@ vote* box3=creat_voter_box();
                         list_candidate = register_candidate(list_candidate,name,id_candidate,number_of_votes);
                         print_candidate_list(list_candidate);
                     }else
-                        printf("The vote has already been initiated.");
+                        printf("The vote has already been initiated.\n");
                     break;
 
                 case 4:
@@ -166,15 +165,20 @@ vote* box3=creat_voter_box();
                         int p = search_in_queue(queue1,queue2,queue3,i);
 
                         if (p == 1) {
+
                             printf("the id %d",i);
                             queue1 = leave_queue(queue1,i);
 
                         }else if (p == 2) {
+
                             printf("the id %d",i);
                             queue2 = leave_queue(queue2,i);
+
                         }else if (p == 3) {
+
                             printf("the id %d",i);
                             queue3 = leave_queue(queue3,i);
+
                         }else
                             printf("not found");
                     }
@@ -246,8 +250,8 @@ vote* box3=creat_voter_box();
 
                                 verify1 = time_verification(hour,minutes);
                                 if (verify1 == 1) {
-                                    print_current(queue1);
-                                    printf("Selection:");
+                                    print_current(queue2);
+                                    printf("Selection:\n");
                                     printf("You must vote using a valid candidate ID.\n");
                                     printf("Otherwise, it will be considered an invalid vote.\n");
                                     printf("Enter 0 for a blank vote.\n");
@@ -271,6 +275,7 @@ vote* box3=creat_voter_box();
                             if (ln == 0) {
                                 printf("empty queue");
                             }else {
+                                printf("Selection:\n");
                                 printf("Note1:the hour must be over 8h and under 21h.\n");
                                 printf("Note2:the minute must be over 0 and under 59.\n");
                                 printf("Note3:if the time is below 10, enter only one digit.\n");
@@ -284,8 +289,8 @@ vote* box3=creat_voter_box();
 
                                 verify1 = time_verification(hour,minutes);
                                 if (verify1 == 1) {
-                                    print_current(queue1);
-                                    printf("Selection:");
+                                    print_current(queue3);
+                                    printf("Selection:\n");
                                     printf("You must vote using a valid candidate ID.\n");
                                     printf("Otherwise, it will be considered an invalid vote.\n");
                                     printf("Enter 0 for a blank vote.\n");
@@ -309,13 +314,13 @@ vote* box3=creat_voter_box();
                     break;
                 case 8:
                     if (status == 0)
-                        printf("Voting must be initialized to use this option.");
+                        printf("Voting must be initialized to use this option.\n");
                     else {
-                        printf("queue1:");
+                        printf("queue1:\n");
                         print_queue(queue1);
-                        printf("queue2:");
+                        printf("queue2:\n");
                         print_queue(queue2);
-                        printf("queue3:");
+                        printf("queue3:\n");
                         print_queue(queue3);
                     }
                     break;
@@ -324,17 +329,17 @@ vote* box3=creat_voter_box();
                         printf("Voting must be initialized to use this option.");
                     else {
                         int l1= len_of_queue(queue1),l2=len_of_queue(queue2),l3=len_of_queue(queue3);
-                        printf("len of queue1:");
+                        printf("len of queue1:\n");
                         printf("%d",l1);
-                        printf("len of queue2:");
+                        printf("len of queue2:\n");
                         printf("%d",l2);
-                        printf("len of queue1:");
+                        printf("len of queue1:\n");
                         printf("%d",l3);
                     }
                     break;
                 case 10:
                     if (status == 0)
-                        printf("Voting must be initialized to use this option.");
+                        printf("Voting must be initialized to use this option.\n");
                     else {
                         printf("Partial result:\n");
                         print_candidate_list(list_candidate);
@@ -343,7 +348,7 @@ vote* box3=creat_voter_box();
                     break;
                 case 11:
                     if (status==0)
-                        printf("Voting must be initialized to use this option.");
+                        printf("Voting must be initialized to use this option.\n");
                     else {
                         total_vote = total_vote + count(box1)+ count(box2)+ count(box3);
                         FILE *f =fopen("Report.txt","w");
@@ -374,7 +379,14 @@ vote* box3=creat_voter_box();
 
         } while (option != 0);
 
-
+        free_queue(queue1);
+        free_queue(queue2);
+        free_queue(queue3);
+        free_candidate_list(list_candidate);
+        free_voter_list(list_voter);
+        free_box(box1);
+        free_box(box2);
+        free_box(box3);
 
 
 }

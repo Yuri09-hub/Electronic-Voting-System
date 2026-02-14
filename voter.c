@@ -57,7 +57,6 @@ int search_voter(voter* list,int id) {
 		}
 		aux = aux->next;
 	}
-	printf("Not found");
 	return 0;
 }
 

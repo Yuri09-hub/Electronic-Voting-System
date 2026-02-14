@@ -24,5 +24,5 @@ int time_verification(int hour,int minute);
 int blank_vote(int id);
 int null_vote(vote* box,candidate*list,int id);
 int valid_vote(vote* box, candidate*list,int id);
-
+void free_box(vote* box);
 #endif //VOTE_H

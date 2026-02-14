@@ -126,3 +126,17 @@ int valid_vote(vote* box, candidate*list,int id) {
     }
     return 0;
 }
+
+void free_box(vote* box) {
+    if (box == NULL|| box -> head == NULL) {
+        return;
+    }
+    node* aux = box -> head;
+    node* aux2;
+    while (aux) {
+        aux2 = aux->next;
+        free(aux);
+        aux = aux2;
+    }
+    box -> head = NULL;
+}
