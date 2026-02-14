@@ -4,6 +4,7 @@
 
 #ifndef CANDIDATE_H
 #define CANDIDATE_H
+
 typedef struct candidate{
     char name[50];
     int id;
@@ -21,11 +22,14 @@ candidate *register_candidate(candidate* list,char *name, int id, int number_of_
 // remove
 candidate* remove_candidate(candidate *list,int id);
 
+candidate* counter_candidate_vote(candidate *list,int id);
+
 int search_candidate(candidate *list, int id);
 int len_candidate(candidate *list);
 
 // print
 void print_candidate_list(candidate* list);
+void candidate_list_vote(candidate* list);
 
 void free_candidate_list(candidate* list);
 

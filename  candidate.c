@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include " candidate.h"
 
+
 candidate* init_candidate(){
     return NULL;
 }
@@ -54,6 +55,20 @@ candidate* remove_candidate(candidate *list,int id){
             return list;
 }
 
+candidate* counter_candidate_vote(candidate *list,int id) {
+    if(list == NULL) {
+        printf("empty list");
+    }
+    candidate* aux = list;
+    while(aux != NULL) {
+        if(aux->id == id) {
+            aux->number_of_votes=+1;
+        }
+        aux = aux->next;
+    }
+    return list;
+}
+
 // search id
 int search_candidate(candidate *list, int id) {
     if(list == NULL) {
@@ -93,6 +108,17 @@ void print_candidate_list(candidate* list) {
     candidate* aux = list;
     while(aux != NULL) {
         printf("%s %d %d\n", aux->name,aux->id,aux->number_of_votes);
+        aux = aux->next;
+    }
+}
+
+void candidate_list_vote(candidate* list) {
+    if (list==NULL) {
+        printf("empty list\n");
+    }
+    candidate* aux = list;
+    while(aux != NULL) {
+        printf("%s %d\n", aux->name,aux->id);
         aux = aux->next;
     }
 }
