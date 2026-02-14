@@ -22,6 +22,7 @@ candidate *register_candidate(candidate* list,char *name, int id, int number_of_
 candidate* remove_candidate(candidate *list,int id);
 
 int search_candidate(candidate *list, int id);
+int len_candidate(candidate *list);
 
 // print
 void print_candidate_list(candidate* list);
