@@ -6,6 +6,7 @@
 #include "voter.c"
 #include " candidate.c"
 #include "vote.c"
+#include "queue_vote.c"
 
 
     void display_menu(){
@@ -34,6 +35,15 @@ int id=1,status =0,option, id_candidate= 3000,number_of_votes=0;
 
 voter* list_voter = initialize_register_voter();
 candidate* list_candidate = init_candidate();
+//
+queue_vote* queue1 = initialize_queue_vote();
+queue_vote* queue2 = initialize_queue_vote();
+queue_vote* queue3 = initialize_queue_vote();
+
+//
+vote* box1=creat_voter_box();
+vote* box2=creat_voter_box();
+vote* box3=creat_voter_box();
 
 
         do {
