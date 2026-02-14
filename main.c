@@ -33,20 +33,43 @@
 int main(){
 char name[50];
 int id=1,status =0,option, id_candidate= 3000,number_of_votes=0;
+int day,month,year,verification;
+int valid=0,blank=0,null=0;
 
 voter* list_voter = initialize_register_voter();
 candidate* list_candidate = init_candidate();
 
-//
+//queue
 queue_vote* queue1 = initialize_queue_vote();
 queue_vote* queue2 = initialize_queue_vote();
 queue_vote* queue3 = initialize_queue_vote();
 
-//
+//box
 vote* box1=creat_voter_box();
 vote* box2=creat_voter_box();
 vote* box3=creat_voter_box();
 
+        printf("Before starting the voting system, you must register the day, month, and year\n");
+        printf("if the day or month is below 10, enter only one digit.\n");
+        printf("Enter the day of vote: ");
+        scanf("%d",&day);
+        printf("Enter the month of vote");
+        scanf("%d",&month);
+        printf("Enter the year of vote: ");
+        scanf("%d",&year);
+
+        verification = date_verification(day,month,year);
+        while (verification !=1) {
+            printf("Invalid date");
+            printf("Please enter a valid date: ");
+            printf("Enter the day of vote: ");
+            scanf("%d",&day);
+            printf("Enter the month of vote");
+            scanf("%d",&month);
+            printf("Enter the year of vote: ");
+            scanf("%d",&year);
+            verification = date_verification(day,month,year);
+        }
 
         do {
 
@@ -143,7 +166,7 @@ vote* box3=creat_voter_box();
                     else {
                         printf("--------------------------- Voting begins ------------------------------------\n");
                         int hour,minutes;
-                        int vote,verify1,verify2;
+                        int vote,verify1;
                         printf("Enter the number of queue to vote:[1,2,3]");
                         scanf("%d", &i);
 
