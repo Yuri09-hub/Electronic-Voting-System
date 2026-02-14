@@ -106,7 +106,7 @@ int len_of_queue(queue_vote* queue) {
 int search_in_queue(queue_vote* queue1,queue_vote*queue2,queue_vote*queue3,int id) {
 
     voter* aux = queue1->head;
-    while (aux != NULL) {
+    while (aux) {
         if (aux->id == id) {
             return 1;
         }
@@ -118,6 +118,7 @@ int search_in_queue(queue_vote* queue1,queue_vote*queue2,queue_vote*queue3,int i
         if (aux->id == id) {
             return 2;
         }
+        aux = aux->next;
     }
 
     aux = queue3-> head;
@@ -125,6 +126,7 @@ int search_in_queue(queue_vote* queue1,queue_vote*queue2,queue_vote*queue3,int i
         if (aux->id == id) {
             return 3;
         }
+        aux = aux->next;
     }
 
     return 0;

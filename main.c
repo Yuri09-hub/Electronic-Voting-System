@@ -21,7 +21,7 @@
         printf("  |  5.Initialize vote                            |\n");
         printf("  |  6.Voter Leave queue (give up)                |\n");
         printf("  |  7.Vote                                       |\n");
-        printf("  |  8.Print candidate                            |\n");
+        printf("  |  8.Print voter                                |\n");
         printf("  |  9.Show Queue Size                            |\n");
         printf("  |  10.Partial results                           |\n");
         printf("  |  11.Final results                             |\n");
@@ -80,7 +80,7 @@ vote* box3=creat_voter_box();
             switch (option) {
                 case 1:
                     if (status == 0) {
-                        printf("Digit your name");
+                        printf("Digit your name:");
                         scanf(" %[^\n]", name);
                         getchar();
                         id = id + 1;
@@ -98,12 +98,12 @@ vote* box3=creat_voter_box();
                     int i,j;
                     if (status == 0) {
 
-                        printf("Enter the ID you want to update.");
+                        printf("Enter the ID you want to update:");
                         scanf("%d", &j);
 
                         i = search_voter(list_voter,j);
                         if (i == 1) {
-                            printf("Enter your name");
+                            printf("Enter your name:");
                             scanf(" %[^\n]", name);
 
                             list_voter = update_voter_information(list_voter,name,j);
@@ -163,6 +163,7 @@ vote* box3=creat_voter_box();
                         printf("Enter the id:");
                         scanf("%d", &i);
                         int p = search_in_queue(queue1,queue2,queue3,i);
+                        printf("%d",p);
 
                         if (p == 1) {
 
@@ -191,7 +192,7 @@ vote* box3=creat_voter_box();
                         printf("--------------------------- Voting begins ------------------------------------\n");
                         int hour,minutes;
                         int vote,verify1,ln;
-                        printf("Enter the number of queue to vote:[1,2,3]");
+                        printf("Enter the number of queue to vote:[1,2,3]: ");
                         scanf("%d", &i);
 
                         if (i ==1) {
