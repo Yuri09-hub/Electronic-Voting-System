@@ -2,7 +2,10 @@
 
 
 📌 Project Overview
+
 This project is an Electronic Voting System developed in C as a personal development project, designed to simulate a complete electoral process — from voter and candidate registration to vote casting and final result reporting. The system is built using Abstract Data Types (ADT) and core Data Structures, with a strong focus on correctness, modularity, and safe memory management.
+
+
 
 
 🎯 Project Goals
@@ -18,6 +21,8 @@ This project is an Electronic Voting System developed in C as a personal develop
 -Develop a structured and maintainable C project
 
 
+
+
 🧱 Data Structures Used
 
 -Singly Linked Lists – voter management
@@ -27,6 +32,8 @@ This project is an Electronic Voting System developed in C as a personal develop
 -Queues – organization of voters into multiple voting lines
 
 -Stacks – storage of votes in the electronic ballot box (urna)
+
+
 
 
 ⚙️ System Features
@@ -46,6 +53,8 @@ This project is an Electronic Voting System developed in C as a personal develop
 -Clear separation of responsibilities through ADTs
 
 
+
+
 🛡️ Memory Management
 -Dynamic memory allocation is handled carefully throughout the system
 
@@ -60,15 +69,17 @@ This project is an Electronic Voting System developed in C as a personal develop
 This ensures system stability and robustness.
 
 
+
+
 👤 Author
 
 Developed by Yuri Rodrigues
-
 📍 Angola
+
+
 
 
 📜 License
 
 This project is released for personal development and learning purposes.
-
-You are free to study, modify, and reuse the code for non-commercial use.
+You are free to study, modify, and reuse the code.
