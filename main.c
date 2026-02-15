@@ -148,7 +148,7 @@ vote* box3=creat_voter_box();
                 case 5:
                     int len = length_voter(list_voter);
                     int len2 = len_candidate(list_candidate);
-                    if (len >= 5 && status == 0 && len2 > 1 ) {
+                    if (len >= 10 && status == 0 && len2 > 1 ) {
                         status =1;
                         distribute_queue(list_voter,&queue1,&queue2,&queue3);
                         printf("The voters were distributed and organized by:\n");
