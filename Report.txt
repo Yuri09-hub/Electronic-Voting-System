@@ -1,0 +1,9 @@
+----------------------------------------------final Report-----------------------------------
+Number of votes: 7
+Blank votes: 1
+Null votes: 1
+Valid votes: 5
+Number of votes for candidates: 
+JLO 302 3
+ACJ 301 2
+the winner is JLO 302 3

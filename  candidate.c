@@ -60,9 +60,10 @@ candidate* counter_candidate_vote(candidate *list,int id) {
         printf("empty list");
     }
     candidate* aux = list;
-    while(aux != NULL) {
+
+    while(aux) {
         if(aux->id == id) {
-            aux->number_of_votes=+1;
+            aux->number_of_votes++;
         }
         aux = aux->next;
     }

@@ -48,7 +48,7 @@ int count(vote* box) {
     node* aux = box -> head;
     while (aux != NULL) {
         count++;
-        aux = aux -> next;
+        aux = aux->next;
     }
     return count;
 }
@@ -87,41 +87,33 @@ int time_verification(int hour, int minute) {
     }
 }
 
-int blank_vote(int id) {
-    if (id == 0) {
-        return 1;
-    }else
-        return 0;
-}
 
-int null_vote(vote* box,candidate*list,int id) {
-    if (box == NULL || box -> head == NULL) {
-        return 0;
-    }
-    node* aux = box->head;
-    candidate* aux2= list;
 
-    while (aux) {
-        if (aux -> id == aux2->id) {
-            return 0;
+int null_vote(candidate*list,int id) {
+    if (list== NULL) {
+        return 0;
+    }else {
+        candidate* aux= list;
+
+        while (aux) {
+            if (aux->id == id)
+                return 0;
+            aux = aux->next;
         }
-        aux2 = aux2 -> next;
-        aux = aux->next;
+        return 1;
     }
-    return 1;
+
 }
 
-int valid_vote(vote* box, candidate*list,int id) {
-    if (box == NULL || box -> head == NULL) {
+int valid_vote(candidate*list,int id) {
+    if (list == NULL) {
         return  0;
     }
-    node* aux = box -> head;
-    candidate* aux2= list;
+    candidate* aux= list;
     while (aux) {
-        if (aux->id == aux2->id) {
+        if (aux->id == id) {
             return 1;
         }
-        aux2 = aux2->next;
         aux = aux->next;
     }
     return 0;

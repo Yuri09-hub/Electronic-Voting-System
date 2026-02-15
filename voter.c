@@ -90,7 +90,6 @@ void print_voter(voter*list){
 //free
 void free_voter_list(voter*list) {
 	if (list==NULL) {
-		printf("Empty list");
 		return;
 	}
 	voter* aux = list;

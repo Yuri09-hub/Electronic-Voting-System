@@ -172,7 +172,6 @@ void distribute_queue(voter* list, queue_vote**queue1, queue_vote**queue2,queue_
 
 void free_queue(queue_vote* queue) {
     if (queue == NULL || queue->head == NULL) {
-        printf("empty or uninitialized queue \n");
         return;
     }
     voter* aux = queue->head;

@@ -7,6 +7,7 @@
 #include " candidate.c"
 #include "vote.c"
 #include "queue_vote.c"
+#include <time.h>
 
 
     void display_menu(){
@@ -35,6 +36,7 @@ char name[50];
 int id=1,status =0,option, id_candidate= 300,number_of_votes=0;
 int day,month,year,verification;
 int valid=0,blank=0,null=0,total_vote=0;
+int n_voter = 0;
 
 voter* list_voter = initialize_register_voter();
 candidate* list_candidate = init_candidate();
@@ -85,14 +87,18 @@ vote* box3=creat_voter_box();
                         getchar();
                         id = id + 1;
                         list_voter = register_voter(list_voter, name,id);
+                        n_voter = length_voter(list_voter);
                         printf("\n");
                         print_voter(list_voter);
                         printf("\n");
-                        break;
+
                     }else if(status == 1) {
                         printf("The vote has already been initiated.");
-                    }
 
+                    }
+                    _sleep(3000);
+
+                    break;
 
                 case 2:
                     int i,j;
@@ -113,6 +119,7 @@ vote* box3=creat_voter_box();
                     }else
                         printf("The vote has already been initiated.");
 
+                    _sleep(3000);
                     break;
 
                 case 3:
@@ -124,6 +131,8 @@ vote* box3=creat_voter_box();
                         print_candidate_list(list_candidate);
                     }else
                         printf("The vote has already been initiated.\n");
+
+                    _sleep(3000);
                     break;
 
                 case 4:
@@ -133,6 +142,7 @@ vote* box3=creat_voter_box();
                         list_candidate = remove_candidate(list_candidate,i);
                     }else
                         printf("The vote has already been initiated.");
+                    _sleep(3000);
                     break;
 
                 case 5:
@@ -154,6 +164,8 @@ vote* box3=creat_voter_box();
                         printf("At least two candidates are required to initiate the voting process.");
                     else
                         printf("A minimum of 10 voters is required to begin the voting process..\n");
+
+                    _sleep(3000);
                     break;
 
                 case 6:
@@ -183,7 +195,7 @@ vote* box3=creat_voter_box();
                         }else
                             printf("not found");
                     }
-
+                    _sleep(3000);
                     break;
                 case 7:
                     if (status == 0)
@@ -192,45 +204,46 @@ vote* box3=creat_voter_box();
                         printf("--------------------------- Voting begins ------------------------------------\n");
                         int hour,minutes;
                         int vote,verify1,ln;
-                        printf("Enter the number of queue to vote:[1,2,3]: ");
-                        scanf("%d", &i);
 
-                        if (i ==1) {
+                        printf("Selection:\n");
+                        printf("Note1:the hour must be over 8h and under 21h.\n");
+                        printf("Note2:the minute must be over 0 and under 59.\n");
+                        printf("Note3:if the time is below 10, enter only one digit.\n");
+                        printf("Enter the hour:");
+                        scanf("%d",&hour);
+
+                        printf("Enter the minute:");
+                        scanf("%d",&minutes);
+
+                        verify1 = time_verification(hour,minutes);
+
+                        if (verify1 == 1) {
+                            printf("Enter the number of queue to vote:[1,2,3]: ");
+                            scanf("%d", &i);
+
+                            if (i ==1) {
                             ln = len_of_queue(queue1);
                             if (ln==0) {
                                 printf("empty queue");
                             }else {
-                                printf("Note1:the hour must be over 8h and under 21h.\n");
-                                printf("Note2:the minute must be over 0 and under 59.\n");
-                                printf("Note3:if the time is below 10, enter only one digit.\n");
+                                print_current(queue1);
+                                printf("Selection:");
+                                printf("You must vote using a valid candidate ID.\n");
+                                printf("Otherwise, it will be considered an invalid vote.\n");
+                                printf("Enter 0 for a blank vote.\n");
+                                candidate_list_vote(list_candidate);
+                                printf("Enter your vote:");
+                                scanf("%d",&vote);
+                                box1 = add_voter_box(box1,vote,hour,minutes,day,month,year);
+                                queue1 = remove_element(queue1);
 
-                                printf("Enter the hour:");
-                                scanf("%d",&hour);
-
-                                printf("Enter the minute:");
-                                scanf("%d",&minutes);
-
-                                verify1 = time_verification(hour,minutes);
-                                if (verify1 == 1) {
-                                    print_current(queue1);
-                                    printf("Selection:");
-                                    printf("You must vote using a valid candidate ID.\n");
-                                    printf("Otherwise, it will be considered an invalid vote.\n");
-                                    printf("Enter 0 for a blank vote.\n");
-                                    candidate_list_vote(list_candidate);
-                                    printf("Enter your vote:");
-                                    scanf("%d",&vote);
-                                    box1 = add_voter_box(box1,vote,hour,minutes,day,month,year);
+                                if (vote == 0)
+                                    blank++;
+                                else {
+                                    null = null + null_vote(list_candidate,vote);
+                                    valid = valid + valid_vote(list_candidate,vote);
                                     list_candidate =counter_candidate_vote(list_candidate,vote);
-                                    queue1 = remove_element(queue1);
-
-                                    blank=+ blank_vote(vote);
-                                    null =+ null_vote(box1,list_candidate,vote);
-                                    valid=+ valid_vote(box1,list_candidate,vote);
-
-
-                                }else
-                                    printf("Invalid time");
+                                }
                             }
 
                         }else if (i==2) {
@@ -238,80 +251,61 @@ vote* box3=creat_voter_box();
                             if (ln == 0) {
                                 printf("empty queue");
                             }else {
-                                printf("Note1:the hour must be over 8h and under 21h.\n");
-                                printf("Note2:the minute must be over 0 and under 59.\n");
-                                printf("Note3:if the time is below 10, enter only one digit.\n");
+                                print_current(queue2);
+                                printf("Selection:\n");
+                                printf("You must vote using a valid candidate ID.\n");
+                                printf("Otherwise, it will be considered an invalid vote.\n");
+                                printf("Enter 0 for a blank vote.\n");
+                                candidate_list_vote(list_candidate);
 
-                                printf("Enter the hour:");
-                                scanf("%d",&hour);
+                                printf("Enter your vote:");
+                                scanf("%d",&vote);
 
-                                printf("Enter the minute:");
-                                scanf("%d",&minutes);
+                                box2 = add_voter_box(box2,vote,hour,minutes,day,month,year);
+                                queue2 = remove_element(queue2);
 
-
-                                verify1 = time_verification(hour,minutes);
-                                if (verify1 == 1) {
-                                    print_current(queue2);
-                                    printf("Selection:\n");
-                                    printf("You must vote using a valid candidate ID.\n");
-                                    printf("Otherwise, it will be considered an invalid vote.\n");
-                                    printf("Enter 0 for a blank vote.\n");
-                                    candidate_list_vote(list_candidate);
-                                    printf("Enter your vote:");
-                                    scanf("%d",&vote);
-                                    box2 = add_voter_box(box2,vote,hour,minutes,day,month,year);
+                                if (vote == 0)
+                                    blank++;
+                                else {
+                                    null = null + null_vote(list_candidate,vote);
+                                    valid = valid + valid_vote(list_candidate,vote);
                                     list_candidate =counter_candidate_vote(list_candidate,vote);
-                                    queue2 = remove_element(queue2);
-
-                                    blank =+ blank_vote(vote);
-                                    null =+ null_vote(box2,list_candidate,vote);
-                                    valid=+ valid_vote(box2,list_candidate,vote);
-
-                                }else
-                                    printf("Invalid time\n");
+                                }
                             }
-
                         }else if (i==3) {
                             ln = len_of_queue(queue3);
                             if (ln == 0) {
                                 printf("empty queue");
                             }else {
+                                print_current(queue3);
                                 printf("Selection:\n");
-                                printf("Note1:the hour must be over 8h and under 21h.\n");
-                                printf("Note2:the minute must be over 0 and under 59.\n");
-                                printf("Note3:if the time is below 10, enter only one digit.\n");
-                                printf("Enter the hour:");
-                                scanf("%d",&hour);
+                                printf("You must vote using a valid candidate ID.\n");
+                                printf("Otherwise, it will be considered an invalid vote.\n");
+                                printf("Enter 0 for a blank vote.\n");
+                                candidate_list_vote(list_candidate);
+                                printf("Enter your vote:");
+                                scanf("%d",&vote);
 
-                                printf("Enter the minute:");
-                                scanf("%d",&minutes);
-
-
-
-                                verify1 = time_verification(hour,minutes);
-                                if (verify1 == 1) {
-                                    print_current(queue3);
-                                    printf("Selection:\n");
-                                    printf("You must vote using a valid candidate ID.\n");
-                                    printf("Otherwise, it will be considered an invalid vote.\n");
-                                    printf("Enter 0 for a blank vote.\n");
-                                    candidate_list_vote(list_candidate);
-                                    printf("Enter your vote:");
-                                    scanf("%d",&vote);
-                                    box3 = add_voter_box(box3,vote,hour,minutes,day,month,year);
-                                    queue3 = remove_element(queue3);
-
-                                    blank =+ blank_vote(vote);
-                                    null =+ null_vote(box2,list_candidate,vote);
-                                    valid=+ valid_vote(box2,list_candidate,vote);
+                                box3 = add_voter_box(box3,vote,hour,minutes,day,month,year);
+                                queue3 = remove_element(queue3);
+                                if (vote == 0)
+                                    blank++;
+                                else {
+                                    null = null + null_vote(list_candidate,vote);
+                                    valid = valid + valid_vote(list_candidate,vote);
                                     list_candidate =counter_candidate_vote(list_candidate,vote);
-                                }else
-                                    printf("Invalid time\n");
+                                }
                             }
+
+
                         }else
                             printf("Invalid option!\n");
+                        }else
+                            printf("Invalid time");
+
 
                     }
+                    _sleep(3000);
                     break;
                 case 8:
                     if (status == 0)
@@ -324,6 +318,7 @@ vote* box3=creat_voter_box();
                         printf("queue3:\n");
                         print_queue(queue3);
                     }
+                    _sleep(3000);
                     break;
                 case 9:
                     if (status == 0)
@@ -337,6 +332,7 @@ vote* box3=creat_voter_box();
                         printf("len of queue1:\n");
                         printf("%d",l3);
                     }
+                    _sleep(3000);
                     break;
                 case 10:
                     if (status == 0)
@@ -345,7 +341,7 @@ vote* box3=creat_voter_box();
                         printf("Partial result:\n");
                         print_candidate_list(list_candidate);
                     }
-
+                    _sleep(3000);
                     break;
                 case 11:
                     if (status==0)
@@ -370,7 +366,9 @@ vote* box3=creat_voter_box();
                         }
                         aux = winner(list_candidate);
                         fprintf(f,"the winner is %s %d %d\n",aux->name,aux->id,aux->number_of_votes);
+                        fclose(f);
                     }
+                    printf("Done");
                     break;
                 case 0:
                     printf("\nExiting system... Goodbye!\n");
