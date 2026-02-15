@@ -138,7 +138,7 @@ vote* box3=creat_voter_box();
                 case 5:
                     int len = length_voter(list_voter);
                     int len2 = len_candidate(list_candidate);
-                    if (len >= 10 && status == 0 && len2 > 1 ) {
+                    if (len >= 5 && status == 0 && len2 > 1 ) {
                         status =1;
                         distribute_queue(list_voter,&queue1,&queue2,&queue3);
                         printf("The voters were distributed and organized by:\n");
@@ -299,12 +299,12 @@ vote* box3=creat_voter_box();
                                     printf("Enter your vote:");
                                     scanf("%d",&vote);
                                     box3 = add_voter_box(box3,vote,hour,minutes,day,month,year);
-                                    list_candidate =counter_candidate_vote(list_candidate,vote);
                                     queue3 = remove_element(queue3);
 
                                     blank =+ blank_vote(vote);
                                     null =+ null_vote(box2,list_candidate,vote);
                                     valid=+ valid_vote(box2,list_candidate,vote);
+                                    list_candidate =counter_candidate_vote(list_candidate,vote);
                                 }else
                                     printf("Invalid time\n");
                             }
@@ -353,6 +353,10 @@ vote* box3=creat_voter_box();
                     else {
                         total_vote = total_vote + count(box1)+ count(box2)+ count(box3);
                         FILE *f =fopen("Report.txt","w");
+                        if(f==NULL){
+                            printf("Error opening file \n");
+                            break;
+                        }
                         fprintf(f,"----------------------------------------------final Report-----------------------------------\n");
                         fprintf(f,"Number of votes: %d\n",total_vote);
                         fprintf(f,"Blank votes: %d\n",blank);
