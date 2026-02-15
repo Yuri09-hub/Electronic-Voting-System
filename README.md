@@ -56,6 +56,7 @@ This project is an Electronic Voting System developed in C as a personal develop
 
 
 🛡️ Memory Management
+
 -Dynamic memory allocation is handled carefully throughout the system
 
 -Nodes are properly freed after removal from data structures
